@@ -93,8 +93,15 @@ endif
 #LOCAL_STATIC_LIBRARIES := libqcamera2_util
 LOCAL_C_INCLUDES += \
         $(TARGET_OUT_HEADERS)/qcom/display
+
+ifneq (,$(filter msm8952,$(TARGET_BOARD_PLATFORM)))
+LOCAL_C_INCLUDES += \
+        hardware/qcom/display/msm8952/libqservice
+else
 LOCAL_C_INCLUDES += \
         hardware/qcom/display/msm8994/libqservice
+endif
+
 LOCAL_SHARED_LIBRARIES := libcamera_client liblog libhardware libutils libcutils libdl
 LOCAL_SHARED_LIBRARIES += libmmcamera_interface libmmjpeg_interface libui libcamera_metadata
 LOCAL_SHARED_LIBRARIES += libqdMetaData libqservice libbinder
